@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Clubhouse Brainstorm Sheet</title>
+<style>
+:root{
+  --bg:#ece4d0; --bg-dot:rgba(90,60,20,.10);
+  --paper:#fbf8f0; --paper-2:#f3eddc; --ink:#1d2433; --ink-2:#4a5263; --rule:#cfc4a8;
+  --pitch:#1f6b45; --pitch-2:#2e8a5c; --red:#b8322a; --yellow:#e2b21c; --blue:#2d5b9a; --plum:#7a3f86; --orange:#c76a1c;
+  --chalk-bg:#23312a; --chalk:#eef0e6; --chalk-2:#b9c7b4;
+  --n-money:#f6e48f; --n-pain:#f5b8ad; --n-moat:#b9d6f2; --n-risk:#d8cbe9; --n-reach:#bfe3c6; --n-hook:#ffd08a;
+  --shadow:0 1px 0 rgba(0,0,0,.05),0 6px 14px -8px rgba(40,30,10,.35);
+  --cond: "Arial Narrow","Roboto Condensed","Helvetica Neue",Arial,system-ui,sans-serif;
+  --mono: ui-monospace,"SFMono-Regular","Cascadia Mono",Menlo,Consolas,"Courier New",monospace;
+  --body: system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#12161c; --bg-dot:rgba(255,255,255,.04);
+    --paper:#1d232c; --paper-2:#242b35; --ink:#ebe6d8; --ink-2:#a9afba; --rule:#38404c;
+    --pitch:#4fb07e; --pitch-2:#3d9a6b; --red:#e2645a; --yellow:#e8c04a; --blue:#78a4e0; --plum:#c08ad0; --orange:#e69a52;
+    --chalk-bg:#0f1a14; --chalk:#e8ede2; --chalk-2:#9fb39a;
+    --n-money:#4a4320; --n-pain:#4d2a26; --n-moat:#22364c; --n-risk:#362c46; --n-reach:#21402a; --n-hook:#4d3815;
+    --shadow:0 1px 0 rgba(0,0,0,.4),0 8px 18px -10px rgba(0,0,0,.8);
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);background-image:radial-gradient(var(--bg-dot) 1px,transparent 1.4px);background-size:14px 14px;color:var(--ink);font:16px/1.5 var(--body);overflow-x:hidden}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+h1,h2,h3{font-family:var(--cond);line-height:1.1;margin:0}
+small{font-size:.75em}
+a{color:inherit}
+
+/* ===== Masthead: printed fixture sheet ===== */
+.mast{margin:28px auto 0;background:var(--paper);border:2px solid var(--ink);box-shadow:var(--shadow);position:relative}
+.mast-top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:8px 16px;border-bottom:2px solid var(--ink);font:600 12px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.08em;background:var(--pitch);color:#fff}
+.mast-body{padding:22px 20px 18px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:start}
+.mast h1{font-size:clamp(34px,7vw,68px);font-weight:800;text-transform:uppercase;letter-spacing:-.01em;font-stretch:condensed}
+.mast h1 .pdf{color:var(--red)}
+.mast .sub{font:600 clamp(15px,2.4vw,19px)/1.35 var(--cond);text-transform:uppercase;letter-spacing:.06em;color:var(--ink-2);margin-top:6px}
+.crest{width:104px;height:120px;flex:none}
+.crest path{fill:var(--pitch);stroke:var(--ink);stroke-width:3}
+.crest text{fill:#fff;font:800 22px var(--cond)}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));border-top:2px solid var(--ink)}
+.meta div{padding:12px 16px;border-right:1px dashed var(--rule);border-bottom:1px dashed var(--rule)}
+.meta dt{font:700 11px var(--mono);text-transform:uppercase;letter-spacing:.12em;color:var(--pitch)}
+.meta dd{margin:4px 0 0;font-size:15px}
+.score{display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--ink);background:var(--ink);gap:2px}
+.score div{background:var(--paper);text-align:center;padding:10px 4px}
+.score b{display:block;font:800 clamp(28px,5vw,44px)/1 var(--mono);color:var(--red);font-variant-numeric:tabular-nums}
+.score span{font:700 11px var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--ink-2)}
+.coachline{padding:12px 16px;border-top:2px solid var(--ink);font-size:14px;color:var(--ink-2);background:var(--paper-2)}
+.coachline b{color:var(--ink)}
+
+/* fixture list / contents */
+.fixtures{margin:22px 0 0;background:var(--paper);border:1px solid var(--rule);box-shadow:var(--shadow)}
+.fixtures h2{font-size:14px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.14em;padding:10px 16px;border-bottom:2px solid var(--ink)}
+.fixtures ol{list-style:none;margin:0;padding:0}
+.fixtures li a{display:grid;grid-template-columns:70px 1fr auto;gap:10px;align-items:baseline;padding:9px 16px;border-bottom:1px dashed var(--rule);text-decoration:none}
+.fixtures li:last-child a{border-bottom:0}
+.fixtures li a:hover{background:var(--paper-2)}
+.fixtures .rd{font:700 12px var(--mono);color:var(--ink-2);text-transform:uppercase}
+.fixtures .tn{font:700 18px var(--cond);text-transform:uppercase;letter-spacing:.03em}
+.fixtures .ct{font:600 13px var(--mono);color:var(--pitch);white-space:nowrap}
+.fixtures .final .tn{color:var(--red)}
+
+/* ===== section chrome ===== */
+section.round{margin:56px 0 0}
+.rhead{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;align-items:end;border-bottom:3px double var(--ink);padding-bottom:10px;margin-bottom:22px}
+.rnum{grid-row:span 2;font:800 clamp(44px,9vw,84px)/.85 var(--mono);color:var(--red);letter-spacing:-.04em}
+.rkick{font:700 12px var(--mono);text-transform:uppercase;letter-spacing:.16em;color:var(--pitch)}
+.rhead h2{font-size:clamp(28px,5vw,46px);text-transform:uppercase;font-weight:800}
+.rbrief{grid-column:1/-1;margin:8px 0 0;font-size:15px;color:var(--ink-2);max-width:72ch}
+.rbrief::before{content:"Coach\2019s whistle: ";font-weight:700;color:var(--ink)}
+
+/* ===== R1: transfer market of pinned cards ===== */
+.c-club{--c:var(--pitch)} .c-comp{--c:var(--red)} .c-niche{--c:var(--plum)} .c-plan{--c:var(--blue)} .c-rescue{--c:var(--orange)}
+.transfer-group{margin-bottom:26px}
+.tg-h{display:flex;align-items:center;gap:8px;font-size:20px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:12px}
+.tg-h .dot{width:14px;height:14px;border-radius:50%;background:var(--c);box-shadow:inset 0 -2px 0 rgba(0,0,0,.25)}
+.tg-h small{font:700 12px var(--mono);color:var(--ink-2);border:1px solid var(--rule);padding:1px 6px;border-radius:9px}
+.cards{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.card{position:relative;background:var(--paper);padding:20px 14px 14px;font-size:14.5px;box-shadow:var(--shadow);border-top:6px solid var(--c);background-image:repeating-linear-gradient(transparent 0 23px,var(--rule) 23px 24px);background-position:0 40px;background-size:100% 24px;background-repeat:repeat;line-height:24px}
+.card:nth-child(3n+1){transform:rotate(-.6deg)} .card:nth-child(3n+2){transform:rotate(.5deg)}
+.card::before{content:"";position:absolute;top:-12px;left:50%;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff8,transparent 45%),var(--c);box-shadow:0 2px 3px rgba(0,0,0,.35)}
+.card .no{display:block;font:700 11px/1 var(--mono);color:var(--c);letter-spacing:.1em;margin-bottom:6px}
+
+/* ===== R2: question wall ===== */
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.chip{font:700 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;padding:4px 10px;border-radius:3px;background:var(--n);color:var(--ink);border:1px solid rgba(0,0,0,.08)}
+.q-money{--n:var(--n-money)} .q-pain{--n:var(--n-pain)} .q-moat{--n:var(--n-moat)} .q-risk{--n:var(--n-risk)} .q-reach{--n:var(--n-reach)} .q-hook{--n:var(--n-hook)}
+.wall{list-style:none;margin:0;padding:18px;columns:4 220px;column-gap:16px;background:var(--paper-2);border:10px solid #8a6a43;border-radius:4px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.2)}
+@media (prefers-color-scheme: dark){.wall{border-color:#3d2f20}}
+.note{break-inside:avoid;margin:0 0 16px;padding:14px 14px 16px;background:var(--n);font:600 15.5px/1.4 var(--cond);box-shadow:var(--shadow);position:relative}
+.note:nth-child(4n+1){transform:rotate(-1.2deg)} .note:nth-child(4n+2){transform:rotate(.8deg)} .note:nth-child(4n+3){transform:rotate(-.4deg)} .note:nth-child(4n){transform:rotate(1.1deg)}
+.note::after{content:"";position:absolute;top:-8px;left:30%;width:40%;height:16px;background:rgba(255,255,255,.45);border:1px solid rgba(0,0,0,.06)}
+@media (prefers-color-scheme: dark){.note::after{background:rgba(255,255,255,.12)}}
+.note b{display:block;font:800 22px/1 var(--mono);color:var(--red);margin-bottom:6px;opacity:.85}
+.note.star{outline:3px solid var(--red);outline-offset:3px}
+.note.star::before{content:"PDF hook";position:absolute;right:8px;top:10px;font:800 10px var(--mono);letter-spacing:.1em;color:var(--red);border:2px solid var(--red);padding:1px 4px;transform:rotate(6deg);text-transform:uppercase}
+
+/* ===== R3: morphological fixture table ===== */
+.dials{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:2px solid var(--ink);margin-bottom:14px;background:var(--paper)}
+.dials div{padding:10px 12px;border-right:1px solid var(--rule);text-align:center}
+.dials div:last-child{border-right:0}
+.dials b{display:block;font:800 18px var(--cond);text-transform:uppercase}
+.dials span{font:600 11px var(--mono);color:var(--ink-2);text-transform:uppercase;letter-spacing:.08em}
+.dials i{font-style:normal;color:var(--red);font-weight:800}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
+.filters button{font:700 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;padding:7px 12px;border:2px solid var(--ink);background:var(--paper);color:var(--ink);cursor:pointer;border-radius:0}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.sheet{width:100%;border-collapse:collapse;background:var(--paper);box-shadow:var(--shadow);font-size:14.5px}
+.sheet th{font:700 11px var(--mono);text-transform:uppercase;letter-spacing:.12em;text-align:left;padding:10px;background:var(--ink);color:var(--paper)}
+.sheet td{padding:9px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+.sheet tr:nth-child(even) td{background:var(--paper-2)}
+.sheet .mno{font:700 13px var(--mono);color:var(--ink-2);width:48px}
+.aud{font:700 13px var(--cond);text-transform:uppercase;letter-spacing:.04em;padding:2px 7px;border-left:4px solid var(--c);display:inline-block}
+.a-sport{--c:var(--pitch)} .a-dev{--c:var(--blue)}
+.pdfstamp{display:inline-block;font:800 10px var(--mono);color:var(--red);border:2px solid var(--red);padding:0 4px;margin-left:4px;transform:rotate(-4deg);letter-spacing:.08em}
+.sheet tr.hide{display:none}
+
+/* ===== R4: flip cards ===== */
+.fliptools{display:flex;gap:10px;align-items:center;margin:0 0 14px;flex-wrap:wrap}
+.fliptools button{font:700 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;padding:7px 12px;border:2px solid var(--ink);background:var(--paper);color:var(--ink);cursor:pointer}
+.fliptools span{font-size:13px;color:var(--ink-2)}
+.flips{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.flip{all:unset;box-sizing:border-box;display:grid;width:100%;height:100%;cursor:pointer;perspective:900px;min-height:170px}
+.flip:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.face{grid-area:1/1;display:flex;flex-direction:column;gap:8px;padding:16px;border-radius:10px;backface-visibility:hidden;-webkit-backface-visibility:hidden;transition:transform .5s cubic-bezier(.3,.7,.3,1);box-shadow:var(--shadow)}
+.front{background:var(--yellow);color:#1d1a0e;border:3px solid #1d1a0e}
+.back{background:var(--red);color:#fff;transform:rotateY(180deg);border:3px solid #1d1a0e}
+.flip[aria-pressed="true"] .front{transform:rotateY(-180deg)}
+.flip[aria-pressed="true"] .back{transform:rotateY(0)}
+.fl{font:700 11px var(--mono);text-transform:uppercase;letter-spacing:.12em;opacity:.8}
+.rule{font:800 20px/1.2 var(--cond);text-transform:uppercase}
+.rev{font:600 16px/1.4 var(--body)}
+.hint{margin-top:auto;font:700 11px var(--mono);text-transform:uppercase;opacity:.6}
+.hint::after{content:" \21BB"}
+.hybrid{margin:22px 0 0;padding:18px 20px;background:var(--paper);border:3px solid var(--pitch);border-left-width:14px;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;box-shadow:var(--shadow)}
+.hybrid .cup{font:800 13px/1.1 var(--mono);color:var(--pitch);text-transform:uppercase;letter-spacing:.1em;text-align:center}
+.hybrid .cup svg{display:block;margin:0 auto 4px;width:44px;height:44px}
+.hybrid p{margin:0;font:600 18px/1.4 var(--cond)}
+
+/* ===== R5: transfer tickets ===== */
+.tickets{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.ticket{display:grid;grid-template-columns:132px 1fr;background:var(--paper);box-shadow:var(--shadow);border-radius:8px;overflow:hidden;font-size:14.5px}
+.stub{background:var(--blue);color:#fff;padding:12px 10px;display:flex;flex-direction:column;gap:4px;position:relative;border-right:2px dashed var(--paper)}
+@media (prefers-color-scheme: dark){.stub{background:#2c4f80}}
+.ticket:nth-child(3n+2) .stub{background:var(--pitch-2)} .ticket:nth-child(3n) .stub{background:var(--plum)}
+@media (prefers-color-scheme: dark){.ticket:nth-child(3n+2) .stub{background:#2b6b4a} .ticket:nth-child(3n) .stub{background:#5e3868}}
+.tl{font:700 10px var(--mono);text-transform:uppercase;letter-spacing:.14em;opacity:.8;display:block}
+.src{font:800 15px/1.15 var(--cond);text-transform:uppercase;overflow-wrap:break-word;hyphens:auto}
+.tn{margin-top:auto;font:700 11px var(--mono);opacity:.8}
+.dest{padding:12px 14px}
+.dest .tl{color:var(--ink-2);margin-bottom:3px}
+
+/* ===== Final: convergence ===== */
+.final-banner{background:var(--ink);color:var(--paper);padding:26px 20px;text-align:center;margin-bottom:28px;position:relative;border:4px double var(--paper);outline:2px solid var(--ink)}
+.final-banner .k{font:700 12px var(--mono);letter-spacing:.3em;text-transform:uppercase;color:var(--red)}
+.final-banner h2{font-size:clamp(34px,7vw,64px);text-transform:uppercase;font-weight:800;margin:6px 0}
+.final-banner p{margin:0 auto;max-width:60ch;font-size:15px;opacity:.85}
+.subhead{font:800 22px var(--cond);text-transform:uppercase;letter-spacing:.04em;margin:34px 0 14px;display:flex;align-items:center;gap:10px}
+.subhead::after{content:"";flex:1;height:2px;background:var(--ink)}
+.clusters{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:18px}
+.cl{background:var(--paper);border:2px solid var(--ink);padding:16px 16px 14px 76px;position:relative;box-shadow:var(--shadow)}
+.cl1{--c:var(--pitch)} .cl2{--c:var(--red)} .cl3{--c:var(--plum)} .cl4{--c:var(--blue)} .cl5{--c:var(--orange)} .cl6{--c:var(--ink-2)}
+.pennant{position:absolute;left:12px;top:-2px;width:50px;height:74px;background:var(--c);clip-path:polygon(0 0,100% 0,100% 100%,50% 78%,0 100%);display:flex;justify-content:center;padding-top:10px}
+.pennant span{font:800 26px var(--mono);color:#fff}
+.cl h3{font-size:21px;text-transform:uppercase;margin-bottom:8px;color:var(--c)}
+.cl6 h3{color:var(--ink)}
+.mem{margin:0 0 10px;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.mem li{font-size:13px;padding:2px 8px;border:1px solid var(--rule);border-radius:12px;background:var(--paper-2)}
+.scout{margin:0;font-size:14px;color:var(--ink-2);border-top:1px dashed var(--rule);padding-top:8px}
+.scout b{font:700 11px var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--ink);margin-right:4px}
+
+.podium{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:22px;align-items:start}
+.chart{background:var(--paper);border:2px solid var(--ink);padding:12px;box-shadow:var(--shadow)}
+.chart svg{display:block;width:100%;height:auto}
+.chart .ax{stroke:var(--ink);stroke-width:2;fill:none}
+.chart .grid{stroke:var(--rule);stroke-dasharray:4 4}
+.chart .zone{fill:var(--pitch);opacity:.10}
+.chart text{fill:var(--ink);font-family:var(--mono);font-size:11px}
+.chart .lbl{font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:10px;fill:var(--ink-2)}
+.chart .zt{fill:var(--pitch);font-weight:700;font-size:10px;letter-spacing:.1em}
+.chart .b1{fill:var(--red)} .chart .b2{fill:var(--blue)} .chart .b3{fill:var(--pitch)}
+.chart .bw{fill:var(--paper);stroke:var(--plum);stroke-width:2.5;stroke-dasharray:5 3}
+.chart .bt{fill:#fff;font:800 15px var(--mono);text-anchor:middle}
+.chart .bwt{fill:var(--plum);font:800 13px var(--mono);text-anchor:middle}
+.chart .cap{font-family:var(--body);font-size:12px;fill:var(--ink)}
+.chart figcaption{font-size:12px;color:var(--ink-2);margin-top:8px}
+.ladder{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.rk{display:grid;grid-template-columns:62px 1fr;background:var(--paper);border:2px solid var(--ink);box-shadow:var(--shadow)}
+.rk .pos{display:flex;align-items:center;justify-content:center;font:800 32px var(--mono);color:#fff;background:var(--c)}
+.rk1{--c:var(--red)} .rk2{--c:var(--blue)} .rk3{--c:var(--pitch)} .rkw{--c:var(--plum);border-style:dashed}
+.rkw .pos{font-size:22px}
+.rk > div{padding:12px 14px}
+.rk h3{font-size:20px;text-transform:uppercase}
+.rk .det{margin:6px 0 0;font-size:14.5px}
+.rk .ver{margin:6px 0 0;font:700 12px/1.45 var(--mono);color:var(--c);text-transform:uppercase;letter-spacing:.04em}
+.rk1 .ver{font-size:13px}
+
+.chalk{margin-top:36px;background:var(--chalk-bg);color:var(--chalk);padding:26px 22px 22px;border:12px solid #6b4a2b;border-radius:4px;box-shadow:inset 0 0 40px rgba(0,0,0,.45),var(--shadow);background-image:radial-gradient(ellipse at 20% 10%,rgba(255,255,255,.06),transparent 60%),radial-gradient(ellipse at 80% 90%,rgba(255,255,255,.04),transparent 60%)}
+@media (prefers-color-scheme: dark){.chalk{border-color:#3d2a18}}
+.chalk h3{font-size:clamp(24px,4.5vw,34px);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.chalk .k{font:700 12px var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--chalk-2)}
+.ins{list-style:none;margin:18px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.ins li{border:1.5px dashed rgba(238,240,230,.35);border-radius:8px;padding:14px 14px 14px 16px;position:relative}
+.ins .n{font:800 30px/1 var(--mono);color:var(--yellow);float:left;margin:0 10px 0 0}
+.ins p{margin:0;font:500 16px/1.45 var(--body)}
+.ins .wide{grid-column:1/-1}
+.mirror{display:grid;grid-template-columns:1fr auto 1fr;gap:8px 12px;align-items:center;margin-top:14px;clear:both}
+.mirror ol{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.mirror li{border:0;padding:6px 10px;border-radius:4px;font:700 14px var(--mono);text-transform:uppercase;letter-spacing:.06em;text-align:center}
+.mirror .s li{background:rgba(79,176,126,.25)} .mirror .d li{background:rgba(120,164,224,.25)}
+.mirror .s li:nth-child(2){margin-left:8px} .mirror .s li:nth-child(3){margin-left:16px} .mirror .s li:nth-child(4){margin-left:24px}
+.mirror .d li:nth-child(2){margin-right:8px} .mirror .d li:nth-child(3){margin-right:16px}
+.mirror .eq{font:800 24px var(--mono);color:var(--yellow);text-align:center}
+.mirror h4{margin:0 0 6px;font:700 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--chalk-2);text-align:center}
+.engine{grid-column:1/-1;text-align:center;font:700 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--chalk-2);margin-top:4px}
+.vs{width:100%;border-collapse:collapse;margin-top:12px;font:600 13px var(--mono);clear:both}
+.vs th,.vs td{border:1px dashed rgba(238,240,230,.3);padding:6px 8px;text-align:center}
+.vs th{text-transform:uppercase;letter-spacing:.08em;font-size:11px;color:var(--chalk-2)}
+.vs .y{color:#8fe0a8} .vs .no{color:#ff9b90}
+
+footer{margin:56px 0 30px;text-align:center}
+.ft{display:inline-block;border:3px solid var(--ink);padding:14px 22px;background:var(--paper);box-shadow:var(--shadow)}
+.ft b{display:block;font:800 30px var(--cond);text-transform:uppercase;letter-spacing:.06em}
+.ft span{font:600 12px var(--mono);color:var(--ink-2);text-transform:uppercase;letter-spacing:.1em}
+
+/* ===== phone ===== */
+@media (max-width:720px){
+  .mast-body{grid-template-columns:1fr}
+  .crest{display:none}
+  .score{grid-template-columns:repeat(2,1fr)}
+  .podium{grid-template-columns:1fr}
+  .dials{grid-template-columns:repeat(2,1fr)}
+  .dials div:nth-child(2){border-right:0}
+  .dials div:nth-child(-n+2){border-bottom:1px solid var(--rule)}
+  .sheet thead{display:none}
+  .sheet,.sheet tbody,.sheet tr,.sheet td{display:block;width:100%}
+  .sheet tr{border-bottom:2px solid var(--ink);padding:6px 0}
+  .sheet td{border:0;padding:3px 12px;display:grid;grid-template-columns:96px 1fr;gap:8px}
+  .sheet td::before{content:attr(data-l);font:700 10px/1.9 var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--ink-2)}
+  .sheet tr:nth-child(even) td{background:transparent}
+  .sheet tr:nth-child(even){background:var(--paper-2)}
+  .sheet .mno{width:100%}
+  .cl{padding-left:16px;padding-top:66px}
+  .pennant{height:60px;width:44px}
+  .fixtures li a{grid-template-columns:56px 1fr;}
+  .fixtures .ct{grid-column:2}
+  .ticket{grid-template-columns:112px 1fr}
+  .mirror{grid-template-columns:1fr}
+  .mirror .eq{transform:rotate(90deg)}
+  .ins{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion: reduce){.face{transition:none}}
+
+/* ===== print: the PDF this repo is named for ===== */
+@page{size:A4;margin:14mm 12mm}
+@media print{
+  :root{
+    --bg:#fff; --paper:#fff; --paper-2:#f4f4f1; --ink:#111; --ink-2:#444; --rule:#bbb;
+    --pitch:#1f6b45; --red:#b8322a; --blue:#2d5b9a; --plum:#7a3f86; --orange:#b35f15; --yellow:#e2b21c;
+    --chalk-bg:#fff; --chalk:#111; --chalk-2:#444;
+    --n-money:#fff6c8; --n-pain:#fde0da; --n-moat:#e2eefa; --n-risk:#efe8f6; --n-reach:#e3f3e6; --n-hook:#ffe9c7;
+    --shadow:none;
+  }
+  html,body{background:#fff !important;font-size:11pt}
+  body{background-image:none}
+  .wrap{max-width:none;padding:0}
+  .filters,.fliptools,.hint{display:none !important}
+  .card,.note,.ticket,.cl,.rk,.flip,.ins li,.hybrid,.sheet tr{break-inside:avoid}
+  .card,.note{transform:none !important}
+  section.round{margin-top:22px}
+  #r2,#r4,#final{break-before:page}
+  .wall{border:1px solid #999;columns:3}
+  .sheet tr.hide{display:table-row}
+  .flip{perspective:none;min-height:0}
+  .face{transform:none !important;backface-visibility:visible;border-radius:0}
+  .front{grid-area:auto;background:#fff;color:#111;border:2px solid #111;border-bottom:0}
+  .back{grid-area:auto;background:#fff;color:#111;border:2px solid #111;border-top:2px dashed #999}
+  .flip{display:flex;flex-direction:column}
+  .back .fl::before{content:"\2192  "}
+  .chalk{border:2px solid #111;box-shadow:none;background-image:none}
+  .ins li{border-color:#999}
+  .mirror .s li,.mirror .d li{background:#eee}
+  .vs .y{color:#1f6b45} .vs .no{color:#b8322a}
+  .ins .n{color:#b8322a}
+  .final-banner{background:#fff;color:#111;border:3px double #111}
+  .final-banner .k{color:#b8322a}
+  .stub,.rk .pos,.pennant,.mast-top{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  a{text-decoration:none}
+  .fixtures .ct::after{content:""}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast" id="top">
+  <div class="mast-top"><span>Clubhouse noticeboard · Brainstorm round</span><span>Fri 20 Nov 2026 · Full time 01:49</span></div>
+  <div class="mast-body">
+    <div>
+      <h1><span class="pdf">PDF</span>romScratch<br>Season Draw</h1>
+      <p class="sub">One developer. One small product. Steady income.<br>Which field do we play on?</p>
+    </div>
+    <svg class="crest" viewBox="0 0 104 120" aria-hidden="true"><path d="M6 6h92v54c0 30-22 46-46 54C28 106 6 90 6 60z"/><text x="52" y="56" text-anchor="middle">PDF</text><text x="52" y="84" text-anchor="middle" style="font-size:14px;letter-spacing:2px">F.C.</text></svg>
+  </div>
+  <dl class="meta" style="margin:0">
+    <div><dt>Topic</dt><dd>What simple tool/product should PDFromScratch be — a single-dev income product</dd></div>
+    <div><dt>Goal</dt><dd>A small existing niche, or an old poorly-maintained tool to replace. Output: areas to investigate together.</dd></div>
+    <div><dt>Seed grounds</dt><dd>Team / sport organisation · Epic-to-story software planning · open to anything</dd></div>
+  </dl>
+  <div class="score" aria-label="Session scoreline">
+    <div><b>101</b><span>Ideas</span></div>
+    <div><b>24</b><span>Questions</span></div>
+    <div><b>6</b><span>Clusters</span></div>
+    <div><b>3+1</b><span>To investigate</span></div>
+  </div>
+  <p class="coachline"><b>Team talk.</b> User: stance = Ideate for me, using coach&#x27;s suggested batch (Steal And Upgrade, Question Storming, Morphological Analysis, Assumption Reversal); intent is to surface areas to investigate together. <b>Mode:</b> autonomous · <b>Status:</b> complete.</p>
+</header>
+
+<nav class="fixtures" aria-label="Fixture list">
+  <h2>Fixture list</h2>
+  <ol>
+    <li><a href="#r1"><span class="rd">Rd 1</span><span class="tn">Steal And Upgrade</span><span class="ct">30 ideas</span></a></li>
+    <li><a href="#r2"><span class="rd">Rd 2</span><span class="tn">Question Storming</span><span class="ct">24 questions</span></a></li>
+    <li><a href="#r3"><span class="rd">Rd 3</span><span class="tn">Morphological Analysis</span><span class="ct">30 combos</span></a></li>
+    <li><a href="#r4"><span class="rd">Rd 4</span><span class="tn">Assumption Reversal</span><span class="ct">21 flips</span></a></li>
+    <li><a href="#r5"><span class="rd">Rd 5</span><span class="tn">Cross-Pollination <small>(bonus)</small></span><span class="ct">20 transplants</span></a></li>
+    <li class="final"><a href="#final"><span class="rd">Final</span><span class="tn">Convergence</span><span class="ct">6 clusters · top 3 + WC</span></a></li>
+  </ol>
+</nav>
+
+<!-- ROUND 1 -->
+<section class="round" id="r1">
+  <div class="rhead"><span class="rnum">01</span><span class="rkick">Round 1 · the transfer market</span><h2>Steal And Upgrade</h2>
+  <p class="rbrief">Tools people tolerate but hate (stale, abandoned, bloated, overpriced), then the solo-dev upgrade.</p></div>
+  <div class="transfer-group"><h3 class="tg-h c-club"><span class="dot"></span>Club &amp; team life <small>9</small></h3><ul class="cards"><li class="card c-club"><span class="no">#01</span>Grassroots club team app as a lean TeamSnap alternative: flat per-club price, no ads, built for NZ/AU club rhythms</li><li class="card c-club"><span class="no">#02</span>Privacy-first alternative to free-but-data-hungry club apps (Spond-style): no data resale, simple flat fee, parents trust it</li><li class="card c-club"><span class="no">#06</span>Referee/umpire availability and allocation for local associations — currently spreadsheets and phone trees</li><li class="card c-club"><span class="no">#07</span>Volunteer duty roster for junior clubs (canteen, oranges, line marking, scoring) replacing ad-laden SignUpGenius-style sites</li><li class="card c-club"><span class="no">#08</span>Kids-sport carpool / lift-share rota that rotates fairly and reminds parents</li><li class="card c-club"><span class="no">#09</span>Fair-playing-time tracker for junior coaches: equal minutes, position rotation, season totals</li><li class="card c-club"><span class="no">#10</span>Lineup and substitution planner for positional sports (netball, basketball, hockey) with printable quarter-by-quarter sheets</li><li class="card c-club"><span class="no">#11</span>Club subs/fee tracker with bank-statement CSV reconciliation (NZ clubs pay by bank transfer, not cards)</li><li class="card c-club"><span class="no">#24</span>Class booking for tiny fitness/yoga/martial-arts studios priced far below big gym platforms</li></ul></div><div class="transfer-group"><h3 class="tg-h c-comp"><span class="dot"></span>Competitions <small>4</small></h3><ul class="cards"><li class="card c-comp"><span class="no">#03</span>Fixture/draw generator for small competitions (round robin, venue + time-slot + bye constraints) replacing Excel macros and old desktop tools</li><li class="card c-comp"><span class="no">#04</span>Box/ladder ranking for squash, tennis, badminton clubs — many still run on ancient PHP sites or noticeboards</li><li class="card c-comp"><span class="no">#05</span>Social sport night-league manager for small operators (futsal, netball, touch, indoor cricket): teams, fixtures, results, standings</li><li class="card c-comp"><span class="no">#12</span>One-day tournament runner: pools, brackets, court/field allocation, live results via QR code on the day</li></ul></div><div class="transfer-group"><h3 class="tg-h c-niche"><span class="dot"></span>Niche meets &amp; games <small>6</small></h3><ul class="cards"><li class="card c-niche"><span class="no">#25</span>Swim-meet entry and results management — incumbent is ancient Windows-only software clubs grumble about</li><li class="card c-niche"><span class="no">#26</span>Small athletics / cross-country meet timing, heats and results publishing</li><li class="card c-niche"><span class="no">#27</span>Swiss-system pairing for chess/board-game clubs (incumbents are old Windows programs)</li><li class="card c-niche"><span class="no">#28</span>Social golf group competitions: stableford, handicaps, season order-of-merit</li><li class="card c-niche"><span class="no">#29</span>Pub-quiz / quiz-night scoring and question-pack manager for hosts</li><li class="card c-niche"><span class="no">#30</span>Private fantasy-style league for workplace or club groups around local competitions</li></ul></div><div class="transfer-group"><h3 class="tg-h c-plan"><span class="dot"></span>Backlog &amp; planning <small>8</small></h3><ul class="cards"><li class="card c-plan"><span class="no">#13</span>Lightweight standalone user-story-mapping tool (Jira story-map plugins are pricey) with export to Jira/Linear/GitHub</li><li class="card c-plan"><span class="no">#14</span>AI-assisted story map: epic in, sliced stories + acceptance criteria out, user edits on a map, then exports</li><li class="card c-plan"><span class="no">#15</span>Async planning poker / estimation (old free tools are ad-riddled or abandoned)</li><li class="card c-plan"><span class="no">#16</span>Minimal team retrospective board after popular free retro tools went paid/ads-heavy</li><li class="card c-plan"><span class="no">#17</span>Requirements to Gherkin acceptance-criteria generator with traceability back to the source requirement</li><li class="card c-plan"><span class="no">#18</span>Simple product roadmap tool for small teams (enterprise roadmap tools are overpriced)</li><li class="card c-plan"><span class="no">#19</span>Release-notes / changelog generator from merged PRs and closed issues, grouped by epic</li><li class="card c-plan"><span class="no">#20</span>Spreadsheet-to-backlog importer: CSV with epic/story hierarchy into Jira, Linear or GitHub (native CSV import is painful)</li></ul></div><div class="transfer-group"><h3 class="tg-h c-rescue"><span class="dot"></span>Rescue jobs <small>3</small></h3><ul class="cards"><li class="card c-rescue"><span class="no">#21</span>Adopt abandoned Trello power-ups / Atlassian Marketplace apps that died after the Cloud migration; rebuild maintained versions</li><li class="card c-rescue"><span class="no">#22</span>Maintained replacement for abandoned WordPress club/event plugins (event booking, member lists)</li><li class="card c-rescue"><span class="no">#23</span>Court/room booking for small tennis/squash clubs replacing old PHP booking systems</li></ul></div>
+</section>
+
+<!-- ROUND 2 -->
+<section class="round" id="r2">
+  <div class="rhead"><span class="rnum">02</span><span class="rkick">Round 2 · the clubroom wall</span><h2>Question Storming</h2>
+  <p class="rbrief">Only questions, surfacing who pays and where the real pain is.</p></div>
+  <div class="legend"><span class="chip q-money">Who pays</span><span class="chip q-pain">Where it hurts</span><span class="chip q-moat">Market &amp; moat</span><span class="chip q-risk">Running it solo</span><span class="chip q-reach">Reach</span><span class="chip q-hook">The hook</span></div>
+  <ol class="wall"><li class="note q-money"><b>Q1</b>Who has a budget but no IT person — club treasurers, league operators, association secretaries?</li><li class="note q-money"><b>Q2</b>What do club volunteers already pay for monthly, out of pocket or from club funds?</li><li class="note q-pain"><b>Q3</b>Why do clubs churn off big team apps — price, complexity, parents refusing to install another app?</li><li class="note q-pain"><b>Q4</b>What breaks at the end of every season (rollover, re-registration, new teams) that someone dreads?</li><li class="note q-pain"><b>Q5</b>Who owns the spreadsheet, and what happens when that volunteer quits?</li><li class="note q-pain"><b>Q6</b>Which weekly task is done by someone who hates it — draws, rosters, chasing availability?</li><li class="note q-pain"><b>Q7</b>Which tasks have hard deadlines from a governing body (registrations, insurance, results submission)?</li><li class="note q-money"><b>Q8</b>Can one sale to an association/region cover dozens of clubs instead of selling club by club?</li><li class="note q-moat"><b>Q9</b>In epic-to-story tools, who is the buyer — PM, BA, tech lead, or the dev who is stuck writing tickets?</li><li class="note q-money"><b>Q10</b>Will individual PMs pay $10-20/month personally, as they already do for AI tools?</li><li class="note q-moat"><b>Q11</b>Will Atlassian/Linear built-in AI make epic-to-story generation a commodity — where is the defensible edge?</li><li class="note q-moat"><b>Q12</b>Where does AI add value that is not commodity — codebase context, domain templates, quality checking?</li><li class="note q-risk"><b>Q13</b>What is the one-person support burden — non-technical volunteers vs developers who self-serve?</li><li class="note q-risk"><b>Q14</b>Is seasonality a problem — does sport income only arrive in-season, and is that fine?</li><li class="note q-money"><b>Q15</b>Could it be sold once (lifetime licence) rather than as SaaS to reduce churn anxiety?</li><li class="note q-reach"><b>Q16</b>Which marketplaces give free distribution — Atlassian, GitHub, Slack, Google Workspace, app stores?</li><li class="note q-reach"><b>Q17</b>How do you reach the first 100 paying customers without paid ads — which communities are reachable?</li><li class="note q-pain"><b>Q18</b>What data is locked inside the old tool, and can we import it in one click to remove switching pain?</li><li class="note q-moat"><b>Q19</b>How do you find poorly-maintained tools — stale marketplace ratings, last-updated dates, angry reviews?</li><li class="note q-money"><b>Q20</b>What is the minimum price per club per season that makes the maths work for one person?</li><li class="note q-risk"><b>Q21</b>What compliance risk comes with it — children&#x27;s data, payments, privacy law?</li><li class="note q-hook star"><b>Q22</b>Can printable output (the PDF in PDFromScratch) be the hook — team sheets, draws, certificates, scorecards?</li><li class="note q-hook"><b>Q23</b>What is the 60-second aha demo for each idea?</li><li class="note q-hook"><b>Q24</b>Which idea lets us dogfood BMAD itself while building it?</li></ol>
+</section>
+
+<!-- ROUND 3 -->
+<section class="round" id="r3">
+  <div class="rhead"><span class="rnum">03</span><span class="rkick">Round 3 · the combination draw</span><h2>Morphological Analysis</h2>
+  <p class="rbrief">Grid of audience x job x delivery format x pricing, combining cells.</p></div>
+  <div class="dials" aria-hidden="true">
+    <div><b>Audience</b><span>who plays</span></div>
+    <div><b><i>×</i> Job</b><span>what they need</span></div>
+    <div><b><i>×</i> Delivery</b><span>where it lives</span></div>
+    <div><b><i>×</i> Pricing</b><span>how it pays</span></div>
+  </div>
+  <div class="filters" role="group" aria-label="Filter combinations">
+    <button type="button" data-f="all" aria-pressed="true">All 30</button>
+    <button type="button" data-f="sport" aria-pressed="false">Sport, clubs &amp; events</button>
+    <button type="button" data-f="dev" aria-pressed="false">Planning &amp; dev</button>
+    <button type="button" data-f="pdf" aria-pressed="false">Has a PDF output</button>
+  </div>
+  <table class="sheet">
+    <thead><tr><th>No.</th><th>Audience</th><th>Job</th><th>Delivery</th><th>Pricing</th></tr></thead>
+    <tbody><tr data-dom="sport"><td class="mno" data-l="No.">01</td><td data-l="Who"><span class="aud a-sport">Junior coach</span></td><td data-l="Job">fair game-time</td><td data-l="Delivered as">mobile PWA</td><td data-l="Priced">$5/season per team</td></tr><tr data-dom="sport"><td class="mno" data-l="No.">02</td><td data-l="Who"><span class="aud a-sport">Club admin</span></td><td data-l="Job">volunteer duty roster</td><td data-l="Delivered as">web + SMS reminders</td><td data-l="Priced">per club per year</td></tr><tr data-dom="sport"><td class="mno" data-l="No.">03</td><td data-l="Who"><span class="aud a-sport">Social league operator</span></td><td data-l="Job">fixtures/results/standings</td><td data-l="Delivered as">web</td><td data-l="Priced">per team per season</td></tr><tr data-dom="sport"><td class="mno" data-l="No.">04</td><td data-l="Who"><span class="aud a-sport">Tournament organiser</span></td><td data-l="Job">one-day draw + live results QR</td><td data-l="Delivered as">web</td><td data-l="Priced">pay-per-event (~$29/event), no subscription commitment</td></tr><tr data-dom="sport"><td class="mno" data-l="No.">05</td><td data-l="Who"><span class="aud a-sport">Governing body</span></td><td data-l="Job">competition draw generation</td><td data-l="Delivered as">as an API/white-label service</td><td data-l="Priced">annual B2B licence</td></tr><tr data-dom="dev"><td class="mno" data-l="No.">06</td><td data-l="Who"><span class="aud a-dev">PM</span></td><td data-l="Job">epic-to-story breakdown</td><td data-l="Delivered as">GitHub app</td><td data-l="Priced">per repo per month</td></tr><tr data-dom="dev"><td class="mno" data-l="No.">07</td><td data-l="Who"><span class="aud a-dev">PM</span></td><td data-l="Job">story map to Jira export</td><td data-l="Delivered as">web</td><td data-l="Priced">per seat</td></tr><tr data-dom="dev"><td class="mno" data-l="No.">08</td><td data-l="Who"><span class="aud a-dev">BA</span></td><td data-l="Job">requirements doc to stories with acceptance criteria</td><td data-l="Delivered as">Confluence/Jira app</td><td data-l="Priced">marketplace pricing</td></tr><tr data-dom="dev"><td class="mno" data-l="No.">09</td><td data-l="Who"><span class="aud a-dev">Solo dev</span></td><td data-l="Job">BMAD-style planning</td><td data-l="Delivered as">in a CLI</td><td data-l="Priced">one-off licence</td></tr><tr data-dom="dev"><td class="mno" data-l="No.">10</td><td data-l="Who"><span class="aud a-dev">Agency</span></td><td data-l="Job">client brief to SOW to seeded backlog</td><td data-l="Delivered as">web</td><td data-l="Priced">per project</td></tr><tr data-dom="dev"><td class="mno" data-l="No.">11</td><td data-l="Who"><span class="aud a-dev">Indie hacker</span></td><td data-l="Job">idea to PRD to issue-tracker seeding</td><td data-l="Delivered as">web</td><td data-l="Priced">per project</td></tr><tr data-dom="sport"><td class="mno" data-l="No.">12</td><td data-l="Who"><span class="aud a-sport">Club treasurer</span></td><td data-l="Job">subs tracking + bank CSV reconciliation</td><td data-l="Delivered as">web</td><td data-l="Priced">per club per year</td></tr><tr data-dom="sport" data-pdf><td class="mno" data-l="No.">13</td><td data-l="Who"><span class="aud a-sport">Coach</span></td><td data-l="Job">printable team sheet / set-play diagrams as PDF <span class=pdfstamp>PDF</span></td><td data-l="Delivered as">web</td><td data-l="Priced">freemium</td></tr><tr data-dom="sport" data-pdf><td class="mno" data-l="No.">14</td><td data-l="Who"><span class="aud a-sport">Club</span></td><td data-l="Job">bulk certificate / award / participation-card PDF generation <span class=pdfstamp>PDF</span></td><td data-l="Delivered as">web</td><td data-l="Priced">per batch</td></tr><tr data-dom="sport"><td class="mno" data-l="No.">15</td><td data-l="Who"><span class="aud a-sport">School sport coordinator</span></td><td data-l="Job">inter-school fixtures and transport</td><td data-l="Delivered as">web</td><td data-l="Priced">per school per year</td></tr><tr data-dom="sport"><td class="mno" data-l="No.">16</td><td data-l="Who"><span class="aud a-sport">Swim club</span></td><td data-l="Job">meet entries and heat sheets</td><td data-l="Delivered as">web</td><td data-l="Priced">per meet</td></tr><tr data-dom="sport"><td class="mno" data-l="No.">17</td><td data-l="Who"><span class="aud a-sport">Referee association</span></td><td data-l="Job">allocation and payments</td><td data-l="Delivered as">web</td><td data-l="Priced">per association</td></tr><tr data-dom="dev"><td class="mno" data-l="No.">18</td><td data-l="Who"><span class="aud a-dev">Scrum master</span></td><td data-l="Job">async planning poker</td><td data-l="Delivered as">Slack app</td><td data-l="Priced">per workspace</td></tr><tr data-dom="dev"><td class="mno" data-l="No.">19</td><td data-l="Who"><span class="aud a-dev">Team lead</span></td><td data-l="Job">sprint capacity planner aware of leave/public holidays</td><td data-l="Delivered as">Google Sheets add-on</td><td data-l="Priced">—</td></tr><tr data-dom="dev"><td class="mno" data-l="No.">20</td><td data-l="Who"><span class="aud a-dev">Product team</span></td><td data-l="Job">release notes from Jira epics</td><td data-l="Delivered as">Atlassian app</td><td data-l="Priced">per site</td></tr><tr data-dom="dev"><td class="mno" data-l="No.">21</td><td data-l="Who"><span class="aud a-dev">Dev team</span></td><td data-l="Job">visual story map over GitHub sub-issues</td><td data-l="Delivered as">GitHub app</td><td data-l="Priced">per org</td></tr><tr data-dom="sport"><td class="mno" data-l="No.">22</td><td data-l="Who"><span class="aud a-sport">Coach</span></td><td data-l="Job">drill and session-plan library</td><td data-l="Delivered as">PWA</td><td data-l="Priced">small subscription</td></tr><tr data-dom="sport"><td class="mno" data-l="No.">23</td><td data-l="Who"><span class="aud a-sport">Parent group</span></td><td data-l="Job">lift-share roster</td><td data-l="Delivered as">WhatsApp/Messenger bot</td><td data-l="Priced">free + club tier</td></tr><tr data-dom="sport"><td class="mno" data-l="No.">24</td><td data-l="Who"><span class="aud a-sport">Club</span></td><td data-l="Job">&#x27;who is in for Saturday?&#x27; availability, replacing chaotic group chats</td><td data-l="Delivered as">WhatsApp/Messenger bot</td><td data-l="Priced">—</td></tr><tr data-dom="sport"><td class="mno" data-l="No.">25</td><td data-l="Who"><span class="aud a-sport">Sport team</span></td><td data-l="Job">availability polls, no app install, no login for players</td><td data-l="Delivered as">by SMS/link</td><td data-l="Priced">per team</td></tr><tr data-dom="sport"><td class="mno" data-l="No.">26</td><td data-l="Who"><span class="aud a-sport">Club</span></td><td data-l="Job">season registration forms + rollover</td><td data-l="Delivered as">web</td><td data-l="Priced">per member fee</td></tr><tr data-dom="sport" data-pdf><td class="mno" data-l="No.">27</td><td data-l="Who"><span class="aud a-sport">Event organiser</span></td><td data-l="Job">start lists, heat sheets, scorecards as print-ready PDF <span class=pdfstamp>PDF</span></td><td data-l="Delivered as">web</td><td data-l="Priced">per event</td></tr><tr data-dom="dev"><td class="mno" data-l="No.">28</td><td data-l="Who"><span class="aud a-dev">PM</span></td><td data-l="Job">meeting transcript to draft stories</td><td data-l="Delivered as">web</td><td data-l="Priced">per seat</td></tr><tr data-dom="dev" data-pdf><td class="mno" data-l="No.">29</td><td data-l="Who"><span class="aud a-dev">Consultancy</span></td><td data-l="Job">backlog to estimate to quote PDF <span class=pdfstamp>PDF</span></td><td data-l="Delivered as">web</td><td data-l="Priced">per project</td></tr><tr data-dom="sport" data-pdf><td class="mno" data-l="No.">30</td><td data-l="Who"><span class="aud a-sport">Club</span></td><td data-l="Job">sponsor management + end-of-season sponsor value report PDF <span class=pdfstamp>PDF</span></td><td data-l="Delivered as">web</td><td data-l="Priced">per club</td></tr></tbody>
+  </table>
+</section>
+
+<!-- ROUND 4 -->
+<section class="round" id="r4">
+  <div class="rhead"><span class="rnum">04</span><span class="rkick">Round 4 · cards turned over</span><h2>Assumption Reversal</h2>
+  <p class="rbrief">Flipping the rules of sport-admin and planning-tool categories.</p></div>
+  <div class="fliptools"><button type="button" id="flipall" aria-pressed="false">Flip all cards</button><span>Yellow card: the accepted rule. Red card: the rule sent off.</span></div>
+  <ul class="flips"><li><button class="flip" type="button" aria-pressed="false"><span class="face front"><span class="fl">Rule 01 · the way it's always done</span><span class="rule">&ldquo;team apps need everyone to install an app&rdquo;</span><span class="hint">tap to flip</span></span><span class="face back"><span class="fl">Reversed</span><span class="rev">no app at all — magic links by SMS/WhatsApp, zero login for players and parents</span></span></button></li><li><button class="flip" type="button" aria-pressed="false"><span class="face front"><span class="fl">Rule 02 · the way it's always done</span><span class="rule">&ldquo;clubs pay per year&rdquo;</span><span class="hint">tap to flip</span></span><span class="face back"><span class="fl">Reversed</span><span class="rev">pay per event or per tournament, card at the door, no subscription</span></span></button></li><li><button class="flip" type="button" aria-pressed="false"><span class="face front"><span class="fl">Rule 03 · the way it's always done</span><span class="rule">&ldquo;planning tools need a server and accounts&rdquo;</span><span class="hint">tap to flip</span></span><span class="face back"><span class="fl">Reversed</span><span class="rev">local-first, backlog lives as markdown in the repo (like BMAD output) with a viewer/editor and sync to trackers</span></span></button></li><li><button class="flip" type="button" aria-pressed="false"><span class="face front"><span class="fl">Rule 04 · the way it's always done</span><span class="rule">&ldquo;story generation needs our AI subscription&rdquo;</span><span class="hint">tap to flip</span></span><span class="face back"><span class="fl">Reversed</span><span class="rev">bring-your-own API key, one-off price, no data stored by us</span></span></button></li><li><button class="flip" type="button" aria-pressed="false"><span class="face front"><span class="fl">Rule 05 · the way it's always done</span><span class="rule">&ldquo;draws are generated once&rdquo;</span><span class="hint">tap to flip</span></span><span class="face back"><span class="fl">Reversed</span><span class="rev">continuous re-optimising rescheduler for rain-outs, forfeits and venue loss</span></span></button></li><li><button class="flip" type="button" aria-pressed="false"><span class="face front"><span class="fl">Rule 06 · the way it's always done</span><span class="rule">&ldquo;admins buy, coaches use&rdquo;</span><span class="hint">tap to flip</span></span><span class="face back"><span class="fl">Reversed</span><span class="rev">coach-first free tool that spreads bottom-up into a paid club tier</span></span></button></li><li><button class="flip" type="button" aria-pressed="false"><span class="face front"><span class="fl">Rule 07 · the way it's always done</span><span class="rule">&ldquo;planning is top-down epic to story&rdquo;</span><span class="hint">tap to flip</span></span><span class="face back"><span class="fl">Reversed</span><span class="rev">bottom-up — reverse-engineer epics/stories/docs from an existing legacy codebase</span></span></button></li><li><button class="flip" type="button" aria-pressed="false"><span class="face front"><span class="fl">Rule 08 · the way it's always done</span><span class="rule">&ldquo;it must integrate with Jira&rdquo;</span><span class="hint">tap to flip</span></span><span class="face back"><span class="fl">Reversed</span><span class="rev">output clean markdown/PDF anyone can read, integrations later</span></span></button></li><li><button class="flip" type="button" aria-pressed="false"><span class="face front"><span class="fl">Rule 09 · the way it's always done</span><span class="rule">&ldquo;sport admin is digital&rdquo;</span><span class="hint">tap to flip</span></span><span class="face back"><span class="fl">Reversed</span><span class="rev">on game day paper wins — print-first team sheets, scorecards, draws (PDF from scratch)</span></span></button></li><li><button class="flip" type="button" aria-pressed="false"><span class="face front"><span class="fl">Rule 10 · the way it's always done</span><span class="rule">&ldquo;customers are clubs&rdquo;</span><span class="hint">tap to flip</span></span><span class="face back"><span class="fl">Reversed</span><span class="rev">customers are venues (turfs, courts, halls) running leagues to fill empty slots</span></span></button></li><li><button class="flip" type="button" aria-pressed="false"><span class="face front"><span class="fl">Rule 11 · the way it's always done</span><span class="rule">&ldquo;epic-to-story is for software&rdquo;</span><span class="hint">tap to flip</span></span><span class="face back"><span class="fl">Reversed</span><span class="rev">use story breakdown for non-software projects — events, club season planning, renovations</span></span></button></li><li><button class="flip" type="button" aria-pressed="false"><span class="face front"><span class="fl">Rule 12 · the way it's always done</span><span class="rule">&ldquo;need many small customers&rdquo;</span><span class="hint">tap to flip</span></span><span class="face back"><span class="fl">Reversed</span><span class="rev">a few associations at $2-5k/year each</span></span></button></li><li><button class="flip" type="button" aria-pressed="false"><span class="face front"><span class="fl">Rule 13 · the way it's always done</span><span class="rule">&ldquo;build new&rdquo;</span><span class="hint">tap to flip</span></span><span class="face back"><span class="fl">Reversed</span><span class="rev">acquire an abandoned micro-SaaS or marketplace app with existing users and modernise it</span></span></button></li><li><button class="flip" type="button" aria-pressed="false"><span class="face front"><span class="fl">Rule 14 · the way it's always done</span><span class="rule">&ldquo;must be SaaS&rdquo;</span><span class="hint">tap to flip</span></span><span class="face back"><span class="fl">Reversed</span><span class="rev">validate first by selling templates/kits (spreadsheet or Notion draw generators) before writing code</span></span></button></li><li><button class="flip" type="button" aria-pressed="false"><span class="face front"><span class="fl">Rule 15 · the way it's always done</span><span class="rule">&ldquo;product needs marketing&rdquo;</span><span class="hint">tap to flip</span></span><span class="face back"><span class="fl">Reversed</span><span class="rev">lean on marketplace distribution (Atlassian, GitHub, Slack, Google Workspace) for discovery</span></span></button></li><li><button class="flip" type="button" aria-pressed="false"><span class="face front"><span class="fl">Rule 16 · the way it's always done</span><span class="rule">&ldquo;ref allocation is the admin&#x27;s job&rdquo;</span><span class="hint">tap to flip</span></span><span class="face back"><span class="fl">Reversed</span><span class="rev">referees self-claim open games marketplace-style, admin only approves</span></span></button></li><li><button class="flip" type="button" aria-pressed="false"><span class="face front"><span class="fl">Rule 17 · the way it's always done</span><span class="rule">&ldquo;users are adults&rdquo;</span><span class="hint">tap to flip</span></span><span class="face back"><span class="fl">Reversed</span><span class="rev">student team captains run their own teams for school sport</span></span></button></li><li><button class="flip" type="button" aria-pressed="false"><span class="face front"><span class="fl">Rule 18 · the way it's always done</span><span class="rule">&ldquo;estimate in points&rdquo;</span><span class="hint">tap to flip</span></span><span class="face back"><span class="fl">Reversed</span><span class="rev">no-estimates Monte Carlo forecasting from throughput for small teams</span></span></button></li><li><button class="flip" type="button" aria-pressed="false"><span class="face front"><span class="fl">Rule 19 · the way it's always done</span><span class="rule">&ldquo;results are typed in&rdquo;</span><span class="hint">tap to flip</span></span><span class="face back"><span class="fl">Reversed</span><span class="rev">photo of the paper scoresheet/whiteboard becomes structured results via AI</span></span></button></li><li><button class="flip" type="button" aria-pressed="false"><span class="face front"><span class="fl">Rule 20 · the way it's always done</span><span class="rule">&ldquo;story quality is judged by humans&rdquo;</span><span class="hint">tap to flip</span></span><span class="face back"><span class="fl">Reversed</span><span class="rev">INVEST/story linter that runs in CI or on Jira tickets and flags bad stories</span></span></button></li></ul>
+  <div class="hybrid">
+    <div class="cup"><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M12 6h20v10a10 10 0 0 1-20 0zM12 9H5a7 7 0 0 0 8 9M32 9h7a7 7 0 0 1-8 9M22 26v8M14 38h16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>Hybrid</div>
+    <p>Hybrid: sport season planner that uses epic-to-story style breakdown (season to rounds to fixtures to duties) — the two seed areas as one engine</p>
+  </div>
+</section>
+
+<!-- ROUND 5 -->
+<section class="round" id="r5">
+  <div class="rhead"><span class="rnum">05</span><span class="rkick">Bonus round · loan signings from other codes</span><h2>Cross-Pollination</h2>
+  <p class="rbrief">Borrow patterns from other industries into open territory beyond the seed areas.</p></div>
+  <ul class="tickets"><li class="ticket"><div class="stub"><span class="tl">From</span><span class="src">Booking-app</span><span class="tn">No. 01</span></div><div class="dest"><span class="tl">Transplanted</span>for community halls / marae / church halls: availability, bond, key pickup, invoice PDF</div></li><li class="ticket"><div class="stub"><span class="tl">From</span><span class="src">Restaurant-roster</span><span class="tn">No. 02</span></div><div class="dest"><span class="tl">Transplanted</span>for small volunteer orgs (surf lifesaving patrols, fire brigade volunteers, op-shops)</div></li><li class="ticket"><div class="stub"><span class="tl">From</span><span class="src">Shopify-app</span><span class="tn">No. 03</span></div><div class="dest"><span class="tl">Transplanted</span>for local sports merch: club uniform pre-order windows with size collection and supplier order PDF</div></li><li class="ticket"><div class="stub"><span class="tl">From</span><span class="src">Wedding-seating-planner</span><span class="tn">No. 04</span></div><div class="dest"><span class="tl">Transplanted</span>for event table/team allocation (corporate quiz teams, team-building days)</div></li><li class="ticket"><div class="stub"><span class="tl">From</span><span class="src">Airline check-in</span><span class="tn">No. 05</span></div><div class="dest"><span class="tl">Transplanted</span>for kids&#x27; holiday programmes: QR sign-in/out with authorised pickup list</div></li><li class="ticket"><div class="stub"><span class="tl">From</span><span class="src">Tradie quoting</span><span class="tn">No. 06</span></div><div class="dest"><span class="tl">Transplanted</span>job description to itemised quote PDF for small trades (old quoting desktop tools)</div></li><li class="ticket"><div class="stub"><span class="tl">From</span><span class="src">Inspection-checklist</span><span class="tn">No. 07</span></div><div class="dest"><span class="tl">Transplanted</span>rental property / equipment inspection forms to signed PDF report on mobile</div></li><li class="ticket"><div class="stub"><span class="tl">From</span><span class="src">Fleet-maintenance</span><span class="tn">No. 08</span></div><div class="dest"><span class="tl">Transplanted</span>for club boats/equipment (rowing, sailing, surf club gear) service logs</div></li><li class="ticket"><div class="stub"><span class="tl">From</span><span class="src">Library-lending</span><span class="tn">No. 09</span></div><div class="dest"><span class="tl">Transplanted</span>for club gear loans (bibs, balls, kayaks) with overdue nudges</div></li><li class="ticket"><div class="stub"><span class="tl">From</span><span class="src">Dentist-reminder</span><span class="tn">No. 10</span></div><div class="dest"><span class="tl">Transplanted</span>for coach accreditation and first-aid certificate expiry tracking across a club</div></li><li class="ticket"><div class="stub"><span class="tl">From</span><span class="src">Gradebook</span><span class="tn">No. 11</span></div><div class="dest"><span class="tl">Transplanted</span>for martial-arts / dance grading: syllabus, assessments, certificates PDF</div></li><li class="ticket"><div class="stub"><span class="tl">From</span><span class="src">Changelog</span><span class="tn">No. 12</span></div><div class="dest"><span class="tl">Transplanted</span>for small B2B SaaS: hosted public roadmap + feedback voting (incumbents got pricey)</div></li><li class="ticket"><div class="stub"><span class="tl">From</span><span class="src">Status-page</span><span class="tn">No. 13</span></div><div class="dest"><span class="tl">Transplanted</span>for indie SaaS and agencies at a tiny flat price</div></li><li class="ticket"><div class="stub"><span class="tl">From</span><span class="src">Invoice</span><span class="tn">No. 14</span></div><div class="dest"><span class="tl">Transplanted</span>for freelancers in NZ with GST-ready PDFs and bank-transfer matching</div></li><li class="ticket"><div class="stub"><span class="tl">From</span><span class="src">Form-to-PDF</span><span class="tn">No. 15</span></div><div class="dest"><span class="tl">Transplanted</span>fillable compliance forms (H&amp;S, incident reports) for small businesses, replacing paper and old PDF-form tools</div></li><li class="ticket"><div class="stub"><span class="tl">From</span><span class="src">Kanban</span><span class="tn">No. 16</span></div><div class="dest"><span class="tl">Transplanted</span>for school/classroom group projects: epic-to-task breakdown for teachers</div></li><li class="ticket"><div class="stub"><span class="tl">From</span><span class="src">Recipe-scaling</span><span class="tn">No. 17</span></div><div class="dest"><span class="tl">Transplanted</span>for team/club catering: cook quantities for tournaments and camps</div></li><li class="ticket"><div class="stub"><span class="tl">From</span><span class="src">Game-day &#x27;run sheet&#x27;</span><span class="tn">No. 18</span></div><div class="dest"><span class="tl">Transplanted</span>from events industry: printable timeline for tournament directors</div></li><li class="ticket"><div class="stub"><span class="tl">From</span><span class="src">Ticketing</span><span class="tn">No. 19</span></div><div class="dest"><span class="tl">Transplanted</span>for club fundraisers (raffles, quiz nights, prizegivings) with door list PDF</div></li><li class="ticket"><div class="stub"><span class="tl">From</span><span class="src">Dev-tool</span><span class="tn">No. 20</span></div><div class="dest"><span class="tl">Transplanted</span>PDF generation API / HTML-to-PDF templates for small apps — literal &#x27;PDF from scratch&#x27; as the product</div></li></ul>
+</section>
+
+<!-- FINAL -->
+<section class="round" id="final">
+  <div class="final-banner">
+    <span class="k">Grand final</span>
+    <h2>Convergence</h2>
+    <p>Affinity Clustering then Impact-Effort. One hundred and one ideas went into the draw; this is what came out the other side.</p>
+  </div>
+
+  <h3 class="subhead">The six pools</h3>
+  <ol class="clusters"><li class="cl cl1"><div class="pennant"><span>1</span></div><h3>No-app team coordination</h3><ul class="mem"><li>availability via magic links/SMS/WhatsApp</li><li>duty rosters</li><li>carpools</li><li>coach-first spread</li></ul><p class="scout"><b>Scout&rsquo;s note</b> high pain; crowded by free apps; support-heavy non-technical users</p></li><li class="cl cl2"><div class="pennant"><span>2</span></div><h3>Competition &amp; tournament engine</h3><ul class="mem"><li>constraint-based draws</li><li>rain-out rescheduler</li><li>one-day tournaments with live QR results</li><li>pay-per-event</li><li>venues/associations as buyers</li></ul><p class="scout"><b>Scout&rsquo;s note</b> algorithmic moat, solo-friendly</p></li><li class="cl cl3"><div class="pennant"><span>3</span></div><h3>Legacy niche-software replacement</h3><ul class="mem"><li>swim meets</li><li>Swiss chess pairing</li><li>athletics meets</li><li>ladders</li><li>court booking</li></ul><p class="scout"><b>Scout&rsquo;s note</b> real incumbents are old Windows/PHP; domain-heavy, needs per-niche validation</p></li><li class="cl cl4"><div class="pennant"><span>4</span></div><h3>Repo-native / AI planning</h3><ul class="mem"><li>markdown backlog in git</li><li>epic-to-story with BYO key</li><li>INVEST story linter</li><li>codebase-to-stories</li><li>CSV-to-tracker importer</li><li>marketplace apps</li></ul><p class="scout"><b>Scout&rsquo;s note</b> developer buyers self-serve; commoditisation risk from Atlassian/GitHub AI</p></li><li class="cl cl5"><div class="pennant"><span>5</span></div><h3>Print-first PDF outputs</h3><ul class="mem"><li>team sheets</li><li>scorecards</li><li>draws</li><li>certificates</li><li>quotes</li><li>compliance forms</li></ul><p class="scout"><b>Scout&rsquo;s note</b> cross-cutting differentiator that matches the PDFromScratch name</p></li><li class="cl cl6"><div class="pennant"><span>6</span></div><h3>Go-to-market levers (not products)</h3><ul class="mem"><li>validate with templates first</li><li>marketplace distribution</li><li>acquire an abandoned micro-SaaS</li><li>sell to associations not clubs</li></ul></li></ol>
+
+  <h3 class="subhead">Impact &times; effort: the ladder</h3>
+  <div class="podium">
+    <figure class="chart" style="margin:0">
+      <svg viewBox="0 0 400 330" role="img" aria-label="Impact versus effort chart of the three ranked areas and the wildcard">
+        <rect class="zone" x="50" y="20" width="165" height="130"/>
+        <text class="zt" x="56" y="34">SWEET SPOT</text>
+        <line class="grid" x1="215" y1="20" x2="215" y2="280"/>
+        <line class="grid" x1="50" y1="150" x2="380" y2="150"/>
+        <path class="ax" d="M50 14v266h336"/>
+        <text class="lbl" x="215" y="300" text-anchor="middle">Effort →</text>
+        <text class="lbl" x="56" y="296">low</text><text class="lbl" x="380" y="296" text-anchor="end">high</text>
+        <text class="lbl" transform="translate(28 150) rotate(-90)" text-anchor="middle">Impact →</text>
+        <!-- #2 medium-high impact, low-medium effort -->
+        <circle class="b2" cx="130" cy="78" r="17"/><text class="bt" x="130" y="83">2</text>
+        <text class="cap" x="130" y="112" text-anchor="middle">Repo-native planning</text>
+        <!-- #1 high impact, medium effort -->
+        <circle class="b1" cx="215" cy="44" r="20"/><text class="bt" x="215" y="49">1</text>
+        <text class="cap" x="246" y="40">Competition &amp;</text><text class="cap" x="246" y="54">tournament engine</text>
+        <!-- #3 high impact, crowded + support-heavy -->
+        <circle class="b3" cx="318" cy="52" r="17"/><text class="bt" x="318" y="57">3</text>
+        <text class="cap" x="318" y="86" text-anchor="middle">No-app availability</text><text class="cap" x="318" y="100" text-anchor="middle">+ duty roster</text>
+        <!-- wildcard: unrated -->
+        <circle class="bw" cx="300" cy="215" r="19"/><text class="bwt" x="300" y="220">WC</text>
+        <text class="cap" x="300" y="252" text-anchor="middle">Ancient Windows sport</text><text class="cap" x="300" y="266" text-anchor="middle">software — unrated</text>
+      </svg>
+      <figcaption>Placed from the coach&rsquo;s words: #1 high impact / medium effort, #2 medium-high / low-medium effort, #3 high impact but crowded and support-heavy. The wildcard was not rated; its ring is a question mark, not a position.</figcaption>
+    </figure>
+    <ol class="ladder"><li class="rk rk1"><span class="pos">1</span><div><h3>Competition &amp; tournament engine</h3><p class="det">pay-per-event draws + rescheduler + print-ready PDFs</p><p class="ver">high impact, medium effort</p></div></li><li class="rk rk2"><span class="pos">2</span><div><h3>Repo-native planning tool</h3><p class="det">markdown backlog + AI epic-to-story + story linter</p><p class="ver">medium-high impact, low-medium effort, dogfoods BMAD; must find an edge vs built-in tracker AI</p></div></li><li class="rk rk3"><span class="pos">3</span><div><h3>No-app availability + duty roster for grassroots clubs</h3><p class="ver">high impact but crowded and support-heavy; investigate only with a sharp wedge</p></div></li><li class="rk rkw"><span class="pos">WC</span><div><h3>Replacing ancient Windows sport software (swim-meet management first)</h3><p class="ver">could be the best niche or a dead end; needs market research</p></div></li></ol>
+  </div>
+
+  <div class="chalk">
+    <span class="k">Coach&rsquo;s whiteboard · post-match</span>
+    <h3>Five things we learned</h3>
+    <ol class="ins">
+      <li class="wide"><span class="n">1</span><p>The two seed areas share one engine: hierarchical breakdown + constraint scheduling + printable output — season &gt; rounds &gt; fixtures &gt; duties mirrors epic &gt; story &gt; task</p>
+        <div class="mirror" aria-hidden="true">
+          <div class="s"><h4>Sport season</h4><ol><li>Season</li><li>Rounds</li><li>Fixtures</li><li>Duties</li></ol></div>
+          <div class="eq">⇄</div>
+          <div class="d"><h4>Software plan</h4><ol><li>Epic</li><li>Story</li><li>Task</li></ol></div>
+          <div class="engine">breakdown + constraint scheduling + printable output</div>
+        </div>
+      </li>
+      <li><span class="n">2</span><p>Pay-per-event pricing dodges sport&#x27;s seasonality and subscription resistance; venues and associations are the buyers with real budgets, clubs are the users</p></li>
+      <li><span class="n">3</span><p>Print-first is a real wedge: game day still runs on paper, and the PDFromScratch name already tells that story</p></li>
+      <li><span class="n">4</span><p>Cheapest validation path before code: sell a spreadsheet draw-generator / story-template kit, measure who buys, then build the SaaS for those buyers</p></li>
+      <li><span class="n">5</span><p>Dev-planning tools win on distribution (GitHub/Atlassian marketplaces) but lose on defensibility; sport tools are the reverse — hard to reach, but sticky once in</p>
+        <table class="vs" aria-hidden="true">
+          <tr><th></th><th>Distribution</th><th>Defensibility</th></tr>
+          <tr><th>Dev-planning</th><td class="y">✓ win</td><td class="no">✗ lose</td></tr>
+          <tr><th>Sport</th><td class="no">✗ hard to reach</td><td class="y">✓ sticky</td></tr>
+        </table>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<footer>
+  <div class="ft"><b>Full time</b><span>Brainstorm complete · 20 Nov 2026 · Next fixture: investigate together</span></div>
+</footer>
+
+</div>
+<script>
+(function(){
+  // flip cards
+  var flips = Array.prototype.slice.call(document.querySelectorAll('.flip'));
+  flips.forEach(function(b){ b.addEventListener('click', function(){ b.setAttribute('aria-pressed', b.getAttribute('aria-pressed')==='true'?'false':'true'); }); });
+  var all = document.getElementById('flipall');
+  if (all) all.addEventListener('click', function(){
+    var on = all.getAttribute('aria-pressed')!=='true';
+    all.setAttribute('aria-pressed', on?'true':'false');
+    all.textContent = on ? 'Turn all back' : 'Flip all cards';
+    flips.forEach(function(b){ b.setAttribute('aria-pressed', on?'true':'false'); });
+  });
+  // morph filters
+  var btns = Array.prototype.slice.call(document.querySelectorAll('.filters button'));
+  var rows = Array.prototype.slice.call(document.querySelectorAll('.sheet tbody tr'));
+  btns.forEach(function(b){ b.addEventListener('click', function(){
+    var f = b.getAttribute('data-f');
+    btns.forEach(function(x){ x.setAttribute('aria-pressed', x===b?'true':'false'); });
+    rows.forEach(function(r){
+      var show = f==='all' || (f==='pdf' ? r.hasAttribute('data-pdf') : r.getAttribute('data-dom')===f);
+      r.classList.toggle('hide', !show);
+    });
+  }); });
+})();
+</script>
+</body>
+</html>
