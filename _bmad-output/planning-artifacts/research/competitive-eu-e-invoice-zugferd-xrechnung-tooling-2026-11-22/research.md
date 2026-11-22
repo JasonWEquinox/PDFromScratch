@@ -9,7 +9,7 @@ preset: 'standard'
 validation: 'normal'
 created: '2026-11-22'
 updated: '2026-11-22'
-claims: {verified: 4, disputed: 2, unverified: 2, overturned: 0}
+claims: {verified: 3, disputed: 2, unverified: 1, overturned: 0}
 ---
 
 # Competitive research: EU e-invoice tooling

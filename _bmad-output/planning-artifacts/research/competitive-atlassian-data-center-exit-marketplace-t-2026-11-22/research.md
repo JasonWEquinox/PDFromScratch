@@ -9,7 +9,7 @@ preset: 'standard'
 validation: 'normal'
 created: '2026-11-22'
 updated: '2026-11-22'
-claims: {verified: 4, disputed: 0, unverified: 3, overturned: 0}
+claims: {verified: 4, disputed: 0, unverified: 2, overturned: 0}
 ---
 
 # Competitive research: Atlassian Data Center exit tooling
