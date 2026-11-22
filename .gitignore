@@ -1,0 +1,21 @@
+# Dependencies and build output
+node_modules/
+dist/
+build/
+.venv/
+__pycache__/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Personal tool settings
+.claude/settings.local.json
+_bmad/custom/config.user.toml
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
