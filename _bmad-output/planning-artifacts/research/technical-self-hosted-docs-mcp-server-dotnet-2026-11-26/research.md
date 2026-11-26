@@ -9,7 +9,7 @@ preset: 'standard'
 validation: 'normal'
 created: '2026-11-26'
 updated: '2026-11-26'
-claims: {verified: 6, disputed: 0, unverified: 3, overturned: 0}
+claims: {verified: 4, disputed: 0, unverified: 3, overturned: 0}
 ---
 
 # Technical research: a self-hosted Context7-like docs MCP server in .NET
