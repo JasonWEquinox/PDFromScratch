@@ -6,7 +6,7 @@ The aim is to find, plan and build a simple product that one developer can run a
 
 ## Status
 
-Analysis phase. No direction has been chosen yet.
+Planning phase: a self-hosted, Context7-like documentation MCP server for our own use, built in .NET.
 
 | Round | What | Outcome | Where |
 |---|---|---|---|
@@ -14,8 +14,9 @@ Analysis phase. No direction has been chosen yet.
 | 2a | Market research: open niches for a solo dev or small team | Ranked gaps; top two: EU e-invoicing, Atlassian Data Center exit | `_bmad-output/planning-artifacts/research/market-*` |
 | 2b | Competitive research on the top two gaps | E-invoicing: room for an SDK/API sold to small vertical-software vendors. Atlassian: narrow, time-limited wedges | `_bmad-output/planning-artifacts/research/competitive-*` |
 | 2c | Creative Partner brainstorm on the two gaps | Parked before it started | `_bmad-output/brainstorming/brainstorm-einvoice-vs-atlassian-exit-2026-11-22/` |
+| 3 | Pivot: research for a self-hosted docs MCP server (.NET) | Extend arabold/docs-mcp-server with a .NET facade that matches Context7's tools; one shared internal server | `_bmad-output/planning-artifacts/research/technical-*` |
 
-Next: reassess with `bmad-help`.
+Next: a one-day spike, then `bmad-product-brief` → `bmad-prd`.
 
 ## Workflow
 
