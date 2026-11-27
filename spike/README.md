@@ -12,7 +12,7 @@
 
 ## Step 0: Prerequisites (5 min)
 
-1. **Docker Desktop** is running (`docker version` shows a Server section).
+1. **Docker Desktop** (Compose v2.24+) is running (`docker version` shows a Server section).
 2. **PowerShell 7** (`pwsh`), used for the `llms.txt` census script. Every other command works in any shell.
 3. **Claude Code** is installed (`claude --version`).
 4. Get this branch and open a terminal in the repo root:
@@ -148,7 +148,7 @@ Optional baseline: do the same task once with the server disabled (`claude mcp r
 
 1. Complete the **FINDINGS §8 verdict**: adopt as-is, adopt with changes, or rethink.
 2. Hand the results back **one** of two ways:
-   - **Commit `spike/FINDINGS.md`** to this branch and push. It's on PR [JasonWEquinox/PDFromScratch](https://github.com/JasonWEquinox/PDFromScratch/pulls) `feature/spike-docs-mcp`.
+   - **Commit `spike/FINDINGS.md`** to this branch (`feature/spike-docs-mcp`, [PR #5](https://github.com/JasonWEquinox/PDFromScratch/pull/5)) and push.
    - Or **paste FINDINGS into the chat**, and I'll commit it.
 3. **Stop** the server. Keep the index for later with:
    ```bash
