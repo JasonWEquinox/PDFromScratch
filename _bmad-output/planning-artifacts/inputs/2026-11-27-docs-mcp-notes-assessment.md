@@ -59,10 +59,20 @@ The sample you supplied (sha256 prefix `f87d74d5…`) is **not committed**. It's
 4. **Private repos**: which host (GitHub, GitLab or Azure DevOps), and roughly how many repos at first?
    - **Answered 2026-11-27: GitHub is preferred.** The company also has Azure DevOps instances, both on-prem and cloud. **Assessment:** GitHub is the better choice. docs-mcp-server supports private GitHub repos natively with a token [A1], while Azure DevOps has no native source. ADO would only add value for repos that exist *only* there; those can be indexed from a local clone or folder without any adapter. **Decision:** GitHub is the private-repo source. ADO is a fallback via local clone only if needed.
 
-**Working defaults until Jason says otherwise** (questions 1–3 weren't answered directly):
-- Q1: treat "solid dev framework" as a proper engineering setup for this repo after the spike.
-- Q2: run Microsoft Learn MCP and the MudBlazor MCP alongside our server.
-- Q3: run the spike locally without authentication, and add Entra ID OAuth when the server moves to a shared host.
+**Answers to questions 1–3 (Jason, 2026-11-27):**
+- **Q1: agreed.** After the spike, set up proper engineering for this repo, **including good security and testing practice**.
+- **Q2: Microsoft Learn MCP** runs alongside our server. **MudBlazor is deferred:** the spike checks whether its docs index cleanly in docs-mcp-server, and if not, we run the existing MudBlazor MCP in parallel.
+- **Q3: agreed.** The spike runs locally without authentication. Entra ID OAuth is added when the server moves to a shared host.
+
+**Added by Jason:** after the spike, run the BMAD process to set an **architecture baseline** (`bmad-architecture`) and write **high-level stories** (`bmad-create-epics-and-stories`) **for external review**.
+
+**Resulting sequence:**
+1. Spike kit: Docker Compose, indexing commands and checklist, run locally by Jason.
+2. Review the spike findings.
+3. Lean brief and PRD.
+4. `bmad-architecture` baseline: security, testing, CI, Docker deployment, Entra ID OAuth.
+5. `bmad-create-epics-and-stories`, kept high-level for external review.
+6. Engineering setup and build, story by story.
 
 ## Sources
 
