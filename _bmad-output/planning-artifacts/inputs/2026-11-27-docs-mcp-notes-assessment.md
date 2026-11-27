@@ -57,6 +57,12 @@ The sample you supplied (sha256 prefix `f87d74d5…`) is **not committed**. It's
 2. **Learn MCP / MudBlazor MCP**: is it acceptable to run these existing MCP servers *alongside* ours (cheap and quick, but Learn MCP is online), or must everything live in our one self-hosted server ("keep in one place", fully offline)?
 3. **Identity provider**: should OAuth use Microsoft Entra ID (it matches `Microsoft.Identity.Web` in your stack)?
 4. **Private repos**: which host (GitHub, GitLab or Azure DevOps), and roughly how many repos at first?
+   - **Answered 2026-11-27: GitHub is preferred.** The company also has Azure DevOps instances, both on-prem and cloud. **Assessment:** GitHub is the better choice. docs-mcp-server supports private GitHub repos natively with a token [A1], while Azure DevOps has no native source. ADO would only add value for repos that exist *only* there; those can be indexed from a local clone or folder without any adapter. **Decision:** GitHub is the private-repo source. ADO is a fallback via local clone only if needed.
+
+**Working defaults until Jason says otherwise** (questions 1–3 weren't answered directly):
+- Q1: treat "solid dev framework" as a proper engineering setup for this repo after the spike.
+- Q2: run Microsoft Learn MCP and the MudBlazor MCP alongside our server.
+- Q3: run the spike locally without authentication, and add Entra ID OAuth when the server moves to a shared host.
 
 ## Sources
 
