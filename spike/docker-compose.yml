@@ -1,0 +1,25 @@
+# Docs MCP server spike: a single container, local only.
+# Runbook: spike/README.md
+name: docs-mcp-spike
+
+services:
+  docs-mcp:
+    image: ghcr.io/arabold/docs-mcp-server:3.5.0   # pinned; the latest release as of 2026-11-22
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:6280:6280"   # loopback only: the web UI and /api have no sign-in
+    env_file:
+      - path: .env               # optional; holds GITHUB_TOKEN for the private-repo test
+        required: false
+    environment:
+      DOCS_MCP_TELEMETRY: "false"                                 # no usage events leave the machine
+      DOCS_MCP_SCRAPER_SECURITY_FILE_ACCESS_ALLOWED_ROOTS: /docs  # only the mounted folder can be indexed
+      DOCS_MCP_READ_ONLY: "${DOCS_MCP_READ_ONLY:-false}"          # step 7 turns this on
+    volumes:
+      - docs-mcp-data:/data          # SQLite index (documents.db)
+      - docs-mcp-config:/config      # config.yaml
+      - ./local-docs:/docs:ro        # files you want to index from disk (read-only)
+
+volumes:
+  docs-mcp-data:
+  docs-mcp-config:
